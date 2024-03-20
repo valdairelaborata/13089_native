@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import {
   Alert,
   FlatList,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
+  ViewBase,
 } from "react-native";
 
 const App = () => {
@@ -69,11 +71,51 @@ const App = () => {
           {editIndex !== -1 ? "Update Task" : "Add Task"}
         </Text>
       </TouchableOpacity>
-      <FlatList
+      {/* <FlatList
         data={tasks}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
-      ></FlatList>
+      ></FlatList> */}
+
+      {/* <ScrollView
+        style={styles.scrollContainer}
+        contentContainerStyle={styles.itemsContainer}
+      >
+        {tasks.map((item, index) => {
+          // return <Text style={styles.textItem}>{task}</Text>;
+          return (
+            <View style={styles.task}>
+              <Text style={styles.itemList}>{item}</Text>
+              <View style={styles.taskButtons}>
+                <TouchableOpacity onPress={() => handleEditTask(index)}>
+                  <Text style={styles.editButton}>Edit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleDeleteTask(index)}>
+                  <Text style={styles.deleteButton}>Delete</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          );
+        })}
+      </ScrollView> */}
+      <ScrollView contentContainerStyle={stylesScroll.stylesScroll}>
+        {tasks.map((item, index) => {
+          // return <Text style={styles.textItem}>{task}</Text>;
+          return (
+            <View style={stylesScroll.card}>
+              <Text style={stylesScroll.title}>{item}</Text>
+              <View style={styles.taskButtons}>
+                <TouchableOpacity onPress={() => handleEditTask(index)}>
+                  <Text style={styles.editButton}>Edit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleDeleteTask(index)}>
+                  <Text style={styles.deleteButton}>Delete</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 };
@@ -138,6 +180,52 @@ const styles = StyleSheet.create({
     color: "red",
     fontWeight: "bold",
     fontSize: 18,
+  },
+  scrollContainer: {
+    flex: 1,
+    width: "100%",
+  },
+  itemsContainer: {
+    flex: 1,
+    marginTop: 10,
+    padding: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    alignItems: "stretch",
+    backgroundColor: "#fff",
+  },
+  textItem: {
+    fontSize: 20,
+  },
+});
+
+const stylesScroll = StyleSheet.create({
+  scrollViewContent: {
+    alignItems: "center",
+    paddingTop: 20,
+  },
+  card: {
+    backgroundColor: "#ffffff",
+    borderRadius: 10,
+    padding: 20,
+    marginVertical: 10,
+    width: "100%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  description: {
+    fontSize: 16,
   },
 });
 
