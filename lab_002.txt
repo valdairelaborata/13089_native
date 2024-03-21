@@ -1,0 +1,8 @@
+
+
+Segregar em componentes:
+    Home - Tela inicial do aplicativo
+    List - Tela para listas os endereços
+    Cad - Tela para o cadastro de endereços (Todos os campos do lab 001)
+
+Criar a estrutura de navegação
