@@ -31,4 +31,9 @@ export default StyleSheet.create({
   textItem: {
     fontSize: 20,
   },
+  container: {
+    backgroundColor: "#fff",
+    marginTop: 10,
+    width: "100%",
+  },
 });
