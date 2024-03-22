@@ -62,17 +62,21 @@ const Cad = () => {
           }}
         ></TextInput>
 
-        <TouchableOpacity style={styles.button} onPress={salvar}>
-          <Text style={styles.buttonText}>Salvar</Text>
-        </TouchableOpacity>
+        <View style={styles.containerButton}>
+          <TouchableOpacity style={styleList.button} onPress={salvar}>
+            <Text style={styles.buttonText}>Salvar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styleList.button}>
+            <Text style={styles.buttonText}>Cancelar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styleList.button}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={styles.buttonText}>Voltar</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
-      <TouchableOpacity
-        style={styleList.button}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styleList.buttonText}>Voltar</Text>
-      </TouchableOpacity>
     </>
   );
 };
@@ -112,8 +116,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
+  containerButton: {
+    flexDirection: "row", // Alinha os itens horizontalmente
+    justifyContent: "space-between", // Distribui o espaço entre os itens
+  },
+  button: {
+    backgroundColor: "blue",
+    padding: 10,
+    borderRadius: 5,
+  },
   buttonText: {
-    color: "#fff",
+    color: "white",
+    fontSize: 16,
     fontWeight: "bold",
   },
 });
