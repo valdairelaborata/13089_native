@@ -7,6 +7,8 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import { showMessage } from "react-native-flash-message";
+
 import axios from "axios";
 
 import Header from "./Header";
@@ -15,11 +17,6 @@ import styleList from "./StyleList";
 
 const Cad = () => {
   const navigation = useNavigation();
-
-  // const [codigo, setCodigo] = useState("");
-  // const [nome, setNome] = useState("");
-  // const [descricao, setDescricao] = useState("");
-
   const [novoProduto, setNovoProduto] = useState({
     codigo: "",
     nome: "",
@@ -27,7 +24,20 @@ const Cad = () => {
   });
 
   function salvar() {
-    axios.post("http://localhost:3000/produtos", novoProduto);
+    if (novoProduto.codigo === "") {
+      showMessage({
+        message: "Código não informado!!!",
+        type: "warning",
+        position: "top",
+      });
+    } else {
+      axios.post("http://localhost:3000/produtos", novoProduto);
+      showMessage({
+        message: "Registro cadastrado com sucesso!!!",
+        type: "success",
+        position: "bottom",
+      });
+    }
   }
 
   return (
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginTop: 10,
-    height: 60,
+    height: 40,
     backgroundColor: "#fff",
     borderRadius: 10,
     paddingHorizontal: 24,

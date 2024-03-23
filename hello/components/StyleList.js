@@ -3,11 +3,11 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   button: {
     marginTop: 10,
-    height: 60,
+    height: 40,
     backgroundColor: "navy",
     borderRadius: 10,
     paddingHorizontal: 24,
-    fontSize: 16,
+    fontSize: 10,
     alignItems: "center",
     justifyContent: "center",
   },
