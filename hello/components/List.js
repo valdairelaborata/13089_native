@@ -3,6 +3,7 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import axios from "axios";
+import { Feather as Icon } from "@expo/vector-icons";
 
 import styleList from "./StyleList";
 import Header from "./Header";
@@ -37,9 +38,18 @@ const List = () => {
               <Text style={styleList.textItem}>
                 {produto.codigo} - {produto.nome}
               </Text>
-              <TouchableOpacity onPress={() => editar(produto.id)}>
-                <Text>Editar</Text>
-              </TouchableOpacity>
+              <View style={styleList.buttonsContainer}>
+                <TouchableOpacity style={styleList.deleteButton}>
+                  <Icon name="trash" color="white" size={12} />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styleList.editButton}
+                  onPress={() => editar(produto.id)}
+                >
+                  <Icon name="edit" color="white" size={12} />
+                </TouchableOpacity>
+              </View>
             </View>
           );
         })}
