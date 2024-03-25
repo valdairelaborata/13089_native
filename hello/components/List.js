@@ -19,6 +19,10 @@ const List = () => {
     });
   }, []);
 
+  function editar(id) {
+    navigation.navigate("Cad", { id });
+  }
+
   return (
     <>
       <Header title="Lista de produtos"></Header>
@@ -33,6 +37,9 @@ const List = () => {
               <Text style={styleList.textItem}>
                 {produto.codigo} - {produto.nome}
               </Text>
+              <TouchableOpacity onPress={() => editar(produto.id)}>
+                <Text>Editar</Text>
+              </TouchableOpacity>
             </View>
           );
         })}

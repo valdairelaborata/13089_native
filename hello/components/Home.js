@@ -1,8 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useId, useState } from "react";
 
 const Home = () => {
   const navigation = useNavigation();
+
+  const [id, setId] = useState("0");
 
   return (
     <>
@@ -16,7 +19,7 @@ const Home = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Cad")}
+          onPress={() => navigation.navigate("Cad", { id })}
         >
           <Text style={styles.buttonText}>Cadastrar novo produto</Text>
         </TouchableOpacity>

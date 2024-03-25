@@ -5,30 +5,48 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { showMessage } from "react-native-flash-message";
 
 import axios from "axios";
 
 import Header from "./Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styleList from "./StyleList";
 
 const Cad = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+
   const [novoProduto, setNovoProduto] = useState({
     codigo: "",
     nome: "",
     descricao: "",
   });
+  const [id, SetId] = useState("0");
+
+  useEffect(() => {
+    // SetId(route.params.id);
+    if (route.params.id !== "0") {
+      axios
+        .get(`http://localhost:3000/produtos/${route.params.id}`)
+        .then((res) => {
+          setNovoProduto(res.data);
+        });
+    }
+
+    // axios.get(`http://localhost:3000/produtos/${id}`).then((res) => {
+    //   setNovoProduto(res.data);
+    // });
+  }, [id]);
 
   function salvar() {
     if (novoProduto.codigo === "") {
       showMessage({
         message: "Código não informado!!!",
         type: "warning",
-        position: "top",
+        position: "center",
       });
     } else {
       axios.post("http://localhost:3000/produtos", novoProduto);
@@ -43,12 +61,14 @@ const Cad = () => {
   return (
     <>
       <Header title="Cadastro de produto"></Header>
+
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="Código"
           clearButtonMode="always"
           inputMode="text"
+          value={novoProduto.codigo}
           onChangeText={(text) => {
             setNovoProduto({ ...novoProduto, codigo: text });
           }}
@@ -58,6 +78,7 @@ const Cad = () => {
           placeholder="Nome"
           clearButtonMode="always"
           inputMode="text"
+          value={novoProduto.nome}
           onChangeText={(text) => {
             setNovoProduto({ ...novoProduto, nome: text });
           }}
@@ -67,6 +88,7 @@ const Cad = () => {
           placeholder="Descricão"
           clearButtonMode="always"
           inputMode="text"
+          value={novoProduto.descricao}
           onChangeText={(text) => {
             setNovoProduto({ ...novoProduto, descricao: text });
           }}
