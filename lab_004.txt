@@ -1,0 +1,8 @@
+
+
+ - Crie navegação entre os componentes para completar o CRUD de endereços.
+ - A lista deve permitir acesso para editar/excluir
+ - Em caso de escolha pela exclusão o aplicativo deve exibir uma pergunta se deseja excluir o registro, mostrando os dados para confirmação.
+
+ 
+
